@@ -1,10 +1,10 @@
-# TO-DO: Complete the selection_sort() function below 
+# Complete the selection_sort() function below 
 def selection_sort( arr ):
     # loop through n-1 elements
     for i in range(0, len(arr) - 1):
         cur_index = i
         smallest_index = cur_index
-        # TO-DO: find next smallest element
+        # find next smallest element
         # (hint, can do in 3 loc)
         for j in range(cur_index, len(arr)):
             if arr[j] < arr[smallest_index]:
@@ -13,10 +13,8 @@ def selection_sort( arr ):
 
 
 
-        # TO-DO: swap
-        temp = arr[cur_index]
-        arr[cur_index] = arr[smallest_index]
-        arr[smallest_index] = temp
+        # swap
+        arr[cur_index], arr[smallest_index] = arr[smallest_index], arr[cur_index]
 
 
 
@@ -30,9 +28,7 @@ def bubble_sort( arr ):
         count = 0
         for i in range(len(arr) - 1):
             if arr[i] > arr[i+1]:
-                temp = arr[i]
-                arr[i] = arr[i+1]
-                arr[i+1] = temp
+                arr[i], arr[i+1] = arr[i+1], arr[i]
                 count += 1
         if count == 0:
             break
@@ -41,8 +37,13 @@ def bubble_sort( arr ):
 
 # STRETCH: implement the Count Sort function below
 def count_sort( arr, maximum=-1 ):
-    # assumes minimum value of 0 or greater
-    # I don't like setting default max=-1, why not just find the max here?
+    minimum = 0
+    for _, value in enumerate(arr):
+        if value < minimum:
+            return "Error, negative numbers not allowed in Count Sort"
+        if value > maximum:
+            maximum = value
+
     count = [0 for _ in range(maximum+1)]
 
     for value in arr:
