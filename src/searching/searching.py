@@ -21,6 +21,18 @@ def binary_search(arr, target):
 
     # TO-DO: add missing code
 
+    middle = (low+high)//2
+
+    while high != low:
+        if arr[middle] == target:
+            return middle
+        elif arr[middle] > target:
+            high = middle
+            middle = (low+high)//2
+        elif arr[middle] < target:
+            low = middle
+            middle = (low+high)//2
+
     return -1 # not found
 
 
